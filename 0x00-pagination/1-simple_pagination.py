@@ -7,22 +7,6 @@ import csv
 from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    """
-    take two integer and return a tuple with a floor or
-    round of the first and the second
-
-    Args:
-        page (int)
-        page_size (int)
-
-    Return:
-        Tuple
-    """
-    nextpage: int = page * page_size
-    return (nextpage - page_size, nextpage)
-
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -48,7 +32,23 @@ class Server:
         assert page > 0
         assert page_size > 0
 
-        paige = index_range(page, page_size)
+        paige = self.index_range(page, page_size)
         if paige[0] > len(self.dataset()) - 1:
             return []
         return self.dataset()[paige[0]:paige[1]]
+
+    @staticmethod
+    def index_range(page: int, page_size: int) -> Tuple[int, int]:
+        """
+        take two integer and return a tuple with a floor or
+        round of the first and the second
+
+        Args:
+            page (int)
+            page_size (int)
+
+        Return:
+            Tuple
+        """
+        nextpage: int = page * page_size
+        return (nextpage - page_size, nextpage)
