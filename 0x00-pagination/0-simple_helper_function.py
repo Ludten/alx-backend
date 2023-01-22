@@ -18,8 +18,5 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     Return:
         Tuple
     """
-    j: int = 0
-    if page > 1:
-        for i in range(0, page):
-            j = j + 10
-    return (j, page_size + j)
+    nextpage: int = page * page_size
+    return (nextpage - page_size, nextpage)
