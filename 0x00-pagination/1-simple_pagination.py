@@ -49,6 +49,6 @@ class Server:
         assert page_size > 0
 
         paige = index_range(page, page_size)
-        if paige[0] > len(self.dataset()):
+        if paige[0] > len(self.dataset()) - 1:
             return []
         return self.dataset()[paige[0]:paige[1]]
