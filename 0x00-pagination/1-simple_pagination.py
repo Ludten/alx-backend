@@ -44,14 +44,14 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
-        Return paignated list
+        Return paginated list
         """
         assert type(page) == int
         assert type(page_size) == int
         assert page > 0
         assert page_size > 0
 
-        paige = index_range(page, page_size)
-        if paige[0] > len(self.dataset()) - 1:
+        pagie = index_range(page, page_size)
+        if pagie[0] > len(self.dataset()) - 1:
             return []
-        return self.dataset()[paige[0]:paige[1]]
+        return self.dataset()[pagie[0]:pagie[1]]
