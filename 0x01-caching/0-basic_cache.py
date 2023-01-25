@@ -3,6 +3,7 @@
 BasicCache module
 """
 
+from typing import Union
 from base_caching import BaseCaching
 
 
@@ -11,7 +12,10 @@ class BasicCache(BaseCaching):
     Basic Cache class
     """
 
-    def put(self, key, item):
+    def put(
+        self, key: Union[int, bytes, str, float],
+        item: Union[int, bytes, str, float]
+    ) -> None:
         """
         Cache an item
         """
