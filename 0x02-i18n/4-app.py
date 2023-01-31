@@ -27,9 +27,10 @@ def get_locale():
     Selecte best locale selector
     """
     lang = request.args.get('locale')
-    if lang is None:
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
-    return request.accept_languages.best_match(lang)
+    if lang is not None:
+        if hasattr(Config, 'BABEL_DEFAULT_LOCALE'):
+            setattr(Config, "BABEL_DEFAULT_LOCALE", lang)
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
