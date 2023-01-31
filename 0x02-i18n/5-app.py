@@ -3,7 +3,8 @@
 starts a Flask web application
 """
 
-from flask import Flask, request, render_template
+from typing import Dict
+from flask import Flask, g, request, render_template
 from flask_babel import Babel
 
 users = {
@@ -28,6 +29,29 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
+@app.before_request
+def before_request() -> None:
+    """
+    Execute before the request
+    """
+    user = get_user()
+    if user is not None:
+        g.user = user
+
+
+def get_user() -> Dict:
+    """
+    Get user data
+    """
+    try:
+        u_id = request.args.get('login_as')
+    except Exception:
+        u_id = None
+    if u_id is not None and u_id in users:
+        return users[u_id]
+    return None
+
+
 @babel.localeselector
 def get_locale():
     """
@@ -45,7 +69,7 @@ def get_locale():
 @app.route('/', strict_slashes=False)
 def index():
     """returns template"""
-    return render_template('3-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':

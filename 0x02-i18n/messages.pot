@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-31 23:35+0100\n"
+"POT-Creation-Date: 2023-02-01 00:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,5 +23,13 @@ msgstr ""
 
 #: templates/3-index.html:7 templates/4-index.html:10 templates/5-index.html:7
 msgid "home_header"
+msgstr ""
+
+#: templates/5-index.html:9
+msgid "logged_in_as"
+msgstr ""
+
+#: templates/5-index.html:11
+msgid "not_logged_in"
 msgstr ""
 

@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{{ _('home_title') }}</title>
+      <title>{{ _('home_title') }}</title>
     </head>
     <body>
-        <H1>{{ _('home_header') }}</H1>
+      <h1>{{ _('home_header') }}</h1>
+      {% if g.user is not None %}
+        <p>{{ _('logged_in_as') }}</p>
+      {% else %}
+        <p>{{ _('not_logged_in') }}</p>
+      {% endif %}
     </body>
 </html>
