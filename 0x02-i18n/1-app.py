@@ -3,7 +3,8 @@
 starts a Flask web application
 """
 
-from flask import Flask, render_template
+from typing import Union
+from flask import Flask, request, render_template
 from flask_babel import Babel
 
 
@@ -15,11 +16,25 @@ class Config():
     TIMEZONE = 'UTC'
 
 
+def get_locale() -> Union[str, None]:
+    """
+    set locale selector
+    """
+    return request.accept_languages.best_match(Config.LANGUAGES[0])
+
+
+def get_timezone() -> str:
+    """
+    Return timezone
+    """
+    return Config.TIMEZONE
+
+
 app = Flask(__name__)
 babel = Babel(
     app,
-    locale_selector=Config.LANGUAGES[0],
-    timezone_selector=Config.TIMEZONE
+    locale_selector=get_locale,
+    timezone_selector=get_timezone
 )
 
 
