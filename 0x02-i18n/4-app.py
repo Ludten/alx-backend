@@ -26,10 +26,12 @@ def get_locale():
     """
     Selecte best locale selector
     """
-    lang = request.args.get('locale')
+    try:
+        lang = request.args.get('locale')
+    except Exception:
+        lang = None
     if lang is not None:
-        if hasattr(Config, 'BABEL_DEFAULT_LOCALE'):
-            setattr(Config, "BABEL_DEFAULT_LOCALE", lang)
+        return lang
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
