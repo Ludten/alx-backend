@@ -26,7 +26,7 @@ def get_locale():
     """
     Selecte best locale selector
     """
-    lang = request.args.get('locale').strip()
+    lang = request.args.get('locale', "").strip()
     if lang is not None and lang in Config.LANGUAGES:
         return lang
     return request.accept_languages.best_match(app.config['LANGUAGES'])
