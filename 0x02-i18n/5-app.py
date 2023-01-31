@@ -45,10 +45,11 @@ def get_user() -> Dict:
     """
     try:
         u_id = request.args.get('login_as')
+        id = int(u_id)
     except Exception:
-        u_id = None
-    if u_id is not None and u_id in users:
-        return users[u_id]
+        id = None
+    if id is not None:
+        return users.get(id)
     return None
 
 
