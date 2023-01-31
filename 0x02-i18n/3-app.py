@@ -4,7 +4,7 @@ starts a Flask web application
 """
 
 from flask import Flask, request, render_template
-from flask_babel import Babel
+from flask_babel import Babel, gettext
 
 
 class Config():
@@ -32,7 +32,7 @@ def get_locale():
 @app.route('/', strict_slashes=False)
 def index():
     """returns template"""
-    return render_template('2-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
