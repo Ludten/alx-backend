@@ -66,10 +66,9 @@ def get_locale():
         return lang
     if g.user and g.user["locale"] in Config.LANGUAGES:
         return g.user["locale"]
-    header_locale = request.headers.get('locale', '')
-    if header_locale in app.config["LANGUAGES"]:
-        return header_locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    if app.config['LANGUAGES']:
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return Config.BABEL_DEFAULT_LOCALE
 
 
 @app.route('/', strict_slashes=False)
