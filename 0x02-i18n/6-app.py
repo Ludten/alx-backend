@@ -35,8 +35,7 @@ def before_request() -> None:
     Execute before the request
     """
     user = get_user()
-    if user is not None:
-        g.user = user
+    g.user = user
 
 
 def get_user() -> Union[Dict, None]:
