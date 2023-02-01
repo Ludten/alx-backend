@@ -44,7 +44,7 @@ def get_user() -> Union[Dict, None]:
     Get user data
     """
     try:
-        u_id = request.args.get('login_as')
+        u_id = request.args.get('login_as', "")
         id = int(u_id)
     except Exception:
         id = None
@@ -54,22 +54,18 @@ def get_user() -> Union[Dict, None]:
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
+    """Retrieves the locale for a web page.
     """
-    Selecte best locale selector
-    """
-    try:
-        lang = request.args.get('locale')
-    except Exception:
-        lang = None
-    if lang and lang in Config.LANGUAGES:
-        return lang
-    if g.user and g.user["locale"] in Config.LANGUAGES:
-        return g.user["locale"]
+    locale = request.args.get('locale', '')
+    if locale in app.config["LANGUAGES"]:
+        return locale
+    if g.user and g.user['locale'] in app.config["LANGUAGES"]:
+        return g.user['locale']
     header_locale = request.headers.get('locale', '')
     if header_locale in app.config["LANGUAGES"]:
-        return
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+        return header_locale
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route('/', strict_slashes=False)
