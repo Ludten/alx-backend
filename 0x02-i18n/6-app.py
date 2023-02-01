@@ -62,7 +62,7 @@ def get_locale():
         lang = request.args.get('locale')
     except Exception:
         lang = None
-    if lang is not None:
+    if lang and lang in Config.LANGUAGES:
         return lang
     if g.user["locale"] and g.user["locale"] in Config.LANGUAGES:
         return g.user["locale"]
