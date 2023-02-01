@@ -88,7 +88,7 @@ Now you should be able to test different translations by visiting `http://127.0.
 	| `logged_in_as`  | `"You are logged in as %(username)s."` | `"Vous êtes connecté en tant que %(username)s."` |
 	| `not_logged_in` | `"You are not logged in."`             | `"Vous n'êtes pas connecté."`                    |
 
-* Change your `get_locale` function to use a user’s preferred local if it is supported.
+* 6-app.py, templates/6-index.html: Change your `get_locale` function to use a user’s preferred local if it is supported.
 
 	The order of priority should be
 
@@ -109,7 +109,7 @@ Now you should be able to test different translations by visiting `http://127.0.
 
 	Before returning a URL-provided or user time zone, you must validate that it is a valid time zone. To that, use `pytz.timezone` and catch the `pytz.exceptions.UnknownTimeZoneError` exception.
 
-* Based on the inferred time zone, display the current time on the home page in the default format. For example:
+* app.py, templates/index.html: Based on the inferred time zone, display the current time on the home page in the default format. For example:
 
 	`Jan 21, 2020, 5:55:39 AM` or `21 janv. 2020 à 05:56:28`
 
