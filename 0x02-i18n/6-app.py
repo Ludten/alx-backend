@@ -3,7 +3,7 @@
 starts a Flask web application
 """
 
-from typing import Dict
+from typing import Dict, Union
 from flask import Flask, g, request, render_template
 from flask_babel import Babel
 
@@ -39,7 +39,7 @@ def before_request() -> None:
         g.user = user
 
 
-def get_user() -> Dict:
+def get_user() -> Union[Dict, None]:
     """
     Get user data
     """
